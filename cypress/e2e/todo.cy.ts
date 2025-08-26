@@ -2,15 +2,38 @@ describe("Todo App", () => {
   it("should add a new task", () => {
     cy.visit("http://localhost:3001");
     cy.get("li").should("have.length", 3); 
-    // cy.get("input[type='text']").type("New Task0");
-    // cy.get("button[type='submit']").click();
     cy.get("ul").should("contain", "New Task0");
-    // cy.get("input[type='text']").type("New Task1");
-    // cy.get("button[type='submit']").click();
     cy.get("ul").should("contain", "New Task1");
-    // cy.get("input[type='text']").type("New Task2");
-    // cy.get("button[type='submit']").click();
     cy.get("ul").should("contain", "New Task2");
+  });
+});
+
+describe("Todo App Click Input", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3001");
+  });
+  
+  it("should add a new task", () => {
+    // Initial state verification
+    cy.get("li").should("have.length", 3);
+    
+    // Add new tasks
+    cy.get("input[type='text']").type("New Task2");
+    cy.get("button[type='submit']").click();
+    cy.get("li").should("have.length", 3);
+    
+    cy.get("input[type='text']").type("New Task0");
+    cy.get("button[type='submit']").click();
+    cy.get("li").should("have.length", 3);
+    
+    cy.get("input[type='text']").type("New Task1");
+    cy.get("button[type='submit']").click();
+    cy.get("li").should("have.length", 3);
+    
+    // Verify the added tasks are present
+    cy.get("ul").should("contain", "New Task2");
+    cy.get("ul").should("contain", "New Task0");
+    cy.get("ul").should("contain", "New Task1");
   });
 });
 
