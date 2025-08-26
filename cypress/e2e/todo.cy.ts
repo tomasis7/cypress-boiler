@@ -18,22 +18,22 @@ describe("Todo App Click Input", () => {
     cy.get("li").should("have.length", 3);
     
     // Add new tasks
-    cy.get("input[type='text']").type("New Task2");
+    cy.get("input[type='text']").type("New Task4");
     cy.get("button[type='submit']").click();
-    cy.get("li").should("have.length", 3);
+    cy.get("li").should("have.length", 4);
     
-    cy.get("input[type='text']").type("New Task0");
+    cy.get("input[type='text']").type("New Task5");
     cy.get("button[type='submit']").click();
-    cy.get("li").should("have.length", 3);
+    cy.get("li").should("have.length", 5);
     
-    cy.get("input[type='text']").type("New Task1");
+    cy.get("input[type='text']").type("New Task6");
     cy.get("button[type='submit']").click();
-    cy.get("li").should("have.length", 3);
+    cy.get("li").should("have.length", 6);
     
     // Verify the added tasks are present
-    cy.get("ul").should("contain", "New Task2");
-    cy.get("ul").should("contain", "New Task0");
-    cy.get("ul").should("contain", "New Task1");
+    cy.get("ul").should("contain", "New Task4");
+    cy.get("ul").should("contain", "New Task5");
+    cy.get("ul").should("contain", "New Task6");
   });
 });
 
