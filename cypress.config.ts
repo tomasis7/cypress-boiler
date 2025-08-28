@@ -8,7 +8,7 @@ export default defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
       //1. skapa in memory databas (replica set prisma gn'ller annars)
-      const db = await MongoMemoryReplSet.create({ replSet: { count: 1}})
+      const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1}})
       const dbUri = db.getUri("cypress-test");
     
       //2. nextjs starta srv pa annat port som ansluter till 1.
@@ -16,7 +16,12 @@ export default defineConfig({
       //3. vanta p[ att nextjs serv startat igang innan cypress kor
       await waitOn({"resources": [`http://localhost:3100`], timeout: 60_000 })
       //4. stada upp processerna dvs mongo databasen o srv  nextjs
-      //5. reseeda om db 
+      const cleanup = async () => {
+        server.kill();
+        await db.stop();
+      };
+      process.on("exit", cleanup);
+      //5. reseeda om db
       on("task", {
 
         async reseed() {
