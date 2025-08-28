@@ -3,6 +3,7 @@ import { db } from "./prisma/db";
 import { seedTodos } from "./prisma/seed/todo";
 import { MongoMemoryReplSet } from "mongodb-memory-server";
 import { spawn } from "child_process";
+import waitOn from "wait-on";
 
 export default defineConfig({
   e2e: {
@@ -22,9 +23,11 @@ export default defineConfig({
       };
       process.on("exit", cleanup);
       //5. reseeda om db
+      process.env.DATABASE_URL = dbUri;
       on("task", {
-
         async reseed() {
+          const {db} = await import("./prisma/db")
+
           await db.todo.deleteMany();
           await seedTodos();
 
