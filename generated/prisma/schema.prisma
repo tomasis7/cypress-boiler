@@ -14,7 +14,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Todo {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  text String
+model User {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  email   String   @unique
+  name    String
+  recipes Recipe[]
+}
+
+model Recipe {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  ingredients  String[]
+  instructions String[]
+  authorId     String   @db.ObjectId
+  author       User     @relation(fields: [authorId], references: [id])
 }

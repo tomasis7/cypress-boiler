@@ -113,9 +113,18 @@ Prisma.NullTypes = {
  * Enums
  */
 
-exports.Prisma.TodoScalarFieldEnum = {
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  text: 'text'
+  email: 'email',
+  name: 'name'
+};
+
+exports.Prisma.RecipeScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  ingredients: 'ingredients',
+  instructions: 'instructions',
+  authorId: 'authorId'
 };
 
 exports.Prisma.SortOrder = {
@@ -130,7 +139,8 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  Todo: 'Todo'
+  User: 'User',
+  Recipe: 'Recipe'
 };
 
 /**

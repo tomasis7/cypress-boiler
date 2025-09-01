@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "cypress open",
+    "test:headless": "cypress run",
     "generate": "prisma generate",
     "push": "prisma db push",
     "studio": "prisma studio",

@@ -1,66 +1,101 @@
 
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+
+interface Recipe {
+  id: string;
+  title: string;
+  ingredients: string[];
+  instructions: string[];
+  author: {
+    id: string;
+    name: string;
+    email: string;
+  };
+}
 
 export default function Home() {
-  const [tasks, setTasks] = useState<{id: string, title: string}[]>([]);
-  const [input, setInput] = useState("");
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState<{id: string, name: string, email: string} | null>(null);
 
-  // Fetch todos from API
   useEffect(() => {
-    fetchTodos();
+    fetchRecipes();
+    // Check if user is logged in (simple localStorage check)
+    const user = localStorage.getItem('user');
+    if (user) {
+      setCurrentUser(JSON.parse(user));
+    }
   }, []);
 
-  const fetchTodos = async () => {
+  const fetchRecipes = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/todos");
+      const res = await fetch("/api/recipes");
       const data = await res.json();
-      setTasks(data);
+      setRecipes(data);
     } catch (err) {
-      // Optionally handle error
+      console.error('Error fetching recipes:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (input.trim() !== "") {
-      try {
-        const res = await fetch("/api/todos", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ title: input.trim() })
-        });
-        if (res.ok) {
-          setInput("");
-          fetchTodos();
-        }
-      } catch (err) {
-        // Optionally handle error
-      }
-    }
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setCurrentUser(null);
   };
 
   return (
-    <>
-      <h1>Todo App</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Add a new task"
-          value={input}
-          onChange={e => setInput(e.target.value)}
-        />
-        <button type="submit" disabled={loading}>Add</button>
-      </form>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </>
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <header style={{ marginBottom: '30px', borderBottom: '1px solid #ccc', paddingBottom: '20px' }}>
+        <h1>RecipeShare</h1>
+        <nav style={{ marginTop: '10px' }}>
+          {currentUser ? (
+            <div>
+              <span>Välkommen, {currentUser.name}! </span>
+              <Link href="/create" style={{ marginRight: '10px', color: 'blue' }}>Skapa Recept</Link>
+              <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}>
+                Logga ut
+              </button>
+            </div>
+          ) : (
+            <Link href="/login" style={{ color: 'blue' }}>Logga in / Registrera</Link>
+          )}
+        </nav>
+      </header>
+
+      <h2>Alla Recept</h2>
+      
+      {loading ? (
+        <p>Laddar recept...</p>
+      ) : recipes.length === 0 ? (
+        <p>Inga recept ännu. <Link href="/create" style={{ color: 'blue' }}>Skapa det första receptet!</Link></p>
+      ) : (
+        <div style={{ display: 'grid', gap: '20px' }}>
+          {recipes.map((recipe) => (
+            <div key={recipe.id} style={{ 
+              border: '1px solid #ddd', 
+              padding: '15px', 
+              borderRadius: '8px',
+              backgroundColor: '#f9f9f9'
+            }}>
+              <h3>
+                <Link href={`/recipes/${recipe.id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                  {recipe.title}
+                </Link>
+              </h3>
+              <p style={{ color: '#666', fontSize: '14px' }}>
+                Av: {recipe.author.name}
+              </p>
+              <p style={{ color: '#888', fontSize: '14px' }}>
+                {recipe.ingredients.length} ingredienser • {recipe.instructions.length} steg
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

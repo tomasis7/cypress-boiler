@@ -14,10 +14,15 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Todo
+ * Model User
  * 
  */
-export type Todo = $Result.DefaultSelection<Prisma.$TodoPayload>
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Recipe
+ * 
+ */
+export type Recipe = $Result.DefaultSelection<Prisma.$RecipePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -26,8 +31,8 @@ export type Todo = $Result.DefaultSelection<Prisma.$TodoPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Todos
- * const todos = await prisma.todo.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  *
  *
@@ -47,8 +52,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Todos
-   * const todos = await prisma.todo.findMany()
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
    * ```
    *
    *
@@ -105,14 +110,24 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.todo`: Exposes CRUD operations for the **Todo** model.
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Todos
-    * const todos = await prisma.todo.findMany()
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
     * ```
     */
-  get todo(): Prisma.TodoDelegate<ExtArgs, ClientOptions>;
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.recipe`: Exposes CRUD operations for the **Recipe** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Recipes
+    * const recipes = await prisma.recipe.findMany()
+    * ```
+    */
+  get recipe(): Prisma.RecipeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -553,7 +568,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Todo: 'Todo'
+    User: 'User',
+    Recipe: 'Recipe'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -572,81 +588,155 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "todo"
+      modelProps: "user" | "recipe"
       txIsolationLevel: never
     }
     model: {
-      Todo: {
-        payload: Prisma.$TodoPayload<ExtArgs>
-        fields: Prisma.TodoFieldRefs
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TodoFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload> | null
+            args: Prisma.UserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TodoFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload>
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           findFirst: {
-            args: Prisma.TodoFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload> | null
+            args: Prisma.UserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TodoFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload>
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           findMany: {
-            args: Prisma.TodoFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload>[]
+            args: Prisma.UserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
           }
           create: {
-            args: Prisma.TodoCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload>
+            args: Prisma.UserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           createMany: {
-            args: Prisma.TodoCreateManyArgs<ExtArgs>
+            args: Prisma.UserCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.TodoDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload>
+            args: Prisma.UserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           update: {
-            args: Prisma.TodoUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload>
+            args: Prisma.UserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           deleteMany: {
-            args: Prisma.TodoDeleteManyArgs<ExtArgs>
+            args: Prisma.UserDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TodoUpdateManyArgs<ExtArgs>
+            args: Prisma.UserUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.TodoUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TodoPayload>
+            args: Prisma.UserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           aggregate: {
-            args: Prisma.TodoAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTodo>
+            args: Prisma.UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser>
           }
           groupBy: {
-            args: Prisma.TodoGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TodoGroupByOutputType>[]
+            args: Prisma.UserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.TodoFindRawArgs<ExtArgs>
+            args: Prisma.UserFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.TodoAggregateRawArgs<ExtArgs>
+            args: Prisma.UserAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.TodoCountArgs<ExtArgs>
-            result: $Utils.Optional<TodoCountAggregateOutputType> | number
+            args: Prisma.UserCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Recipe: {
+        payload: Prisma.$RecipePayload<ExtArgs>
+        fields: Prisma.RecipeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RecipeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RecipeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload>
+          }
+          findFirst: {
+            args: Prisma.RecipeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RecipeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload>
+          }
+          findMany: {
+            args: Prisma.RecipeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload>[]
+          }
+          create: {
+            args: Prisma.RecipeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload>
+          }
+          createMany: {
+            args: Prisma.RecipeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.RecipeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload>
+          }
+          update: {
+            args: Prisma.RecipeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload>
+          }
+          deleteMany: {
+            args: Prisma.RecipeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RecipeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.RecipeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecipePayload>
+          }
+          aggregate: {
+            args: Prisma.RecipeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRecipe>
+          }
+          groupBy: {
+            args: Prisma.RecipeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RecipeGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.RecipeFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.RecipeAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.RecipeCountArgs<ExtArgs>
+            result: $Utils.Optional<RecipeCountAggregateOutputType> | number
           }
         }
       }
@@ -729,7 +819,8 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    todo?: TodoOmit
+    user?: UserOmit
+    recipe?: RecipeOmit
   }
 
   /* Types for Logging */
@@ -805,305 +896,353 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    recipes: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recipes?: boolean | UserCountOutputTypeCountRecipesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRecipesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecipeWhereInput
+  }
+
 
   /**
    * Models
    */
 
   /**
-   * Model Todo
+   * Model User
    */
 
-  export type AggregateTodo = {
-    _count: TodoCountAggregateOutputType | null
-    _min: TodoMinAggregateOutputType | null
-    _max: TodoMaxAggregateOutputType | null
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
   }
 
-  export type TodoMinAggregateOutputType = {
+  export type UserMinAggregateOutputType = {
     id: string | null
-    text: string | null
+    email: string | null
+    name: string | null
   }
 
-  export type TodoMaxAggregateOutputType = {
+  export type UserMaxAggregateOutputType = {
     id: string | null
-    text: string | null
+    email: string | null
+    name: string | null
   }
 
-  export type TodoCountAggregateOutputType = {
+  export type UserCountAggregateOutputType = {
     id: number
-    text: number
+    email: number
+    name: number
     _all: number
   }
 
 
-  export type TodoMinAggregateInputType = {
+  export type UserMinAggregateInputType = {
     id?: true
-    text?: true
+    email?: true
+    name?: true
   }
 
-  export type TodoMaxAggregateInputType = {
+  export type UserMaxAggregateInputType = {
     id?: true
-    text?: true
+    email?: true
+    name?: true
   }
 
-  export type TodoCountAggregateInputType = {
+  export type UserCountAggregateInputType = {
     id?: true
-    text?: true
+    email?: true
+    name?: true
     _all?: true
   }
 
-  export type TodoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Todo to aggregate.
+     * Filter which User to aggregate.
      */
-    where?: TodoWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Todos to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: TodoOrderByWithRelationInput | TodoOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: TodoWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Todos from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Todos.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Todos
+     * Count returned Users
     **/
-    _count?: true | TodoCountAggregateInputType
+    _count?: true | UserCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TodoMinAggregateInputType
+    _min?: UserMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TodoMaxAggregateInputType
+    _max?: UserMaxAggregateInputType
   }
 
-  export type GetTodoAggregateType<T extends TodoAggregateArgs> = {
-        [P in keyof T & keyof AggregateTodo]: P extends '_count' | 'count'
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTodo[P]>
-      : GetScalarType<T[P], AggregateTodo[P]>
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
   }
 
 
 
 
-  export type TodoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TodoWhereInput
-    orderBy?: TodoOrderByWithAggregationInput | TodoOrderByWithAggregationInput[]
-    by: TodoScalarFieldEnum[] | TodoScalarFieldEnum
-    having?: TodoScalarWhereWithAggregatesInput
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TodoCountAggregateInputType | true
-    _min?: TodoMinAggregateInputType
-    _max?: TodoMaxAggregateInputType
+    _count?: UserCountAggregateInputType | true
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
   }
 
-  export type TodoGroupByOutputType = {
+  export type UserGroupByOutputType = {
     id: string
-    text: string
-    _count: TodoCountAggregateOutputType | null
-    _min: TodoMinAggregateOutputType | null
-    _max: TodoMaxAggregateOutputType | null
+    email: string
+    name: string
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
   }
 
-  type GetTodoGroupByPayload<T extends TodoGroupByArgs> = Prisma.PrismaPromise<
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TodoGroupByOutputType, T['by']> &
+      PickEnumerable<UserGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TodoGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TodoGroupByOutputType[P]>
-            : GetScalarType<T[P], TodoGroupByOutputType[P]>
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type TodoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    text?: boolean
-  }, ExtArgs["result"]["todo"]>
+    email?: boolean
+    name?: boolean
+    recipes?: boolean | User$recipesArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
 
 
 
-  export type TodoSelectScalar = {
+  export type UserSelectScalar = {
     id?: boolean
-    text?: boolean
+    email?: boolean
+    name?: boolean
   }
 
-  export type TodoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text", ExtArgs["result"]["todo"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recipes?: boolean | User$recipesArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
-  export type $TodoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Todo"
-    objects: {}
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {
+      recipes: Prisma.$RecipePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      text: string
-    }, ExtArgs["result"]["todo"]>
+      email: string
+      name: string
+    }, ExtArgs["result"]["user"]>
     composites: {}
   }
 
-  type TodoGetPayload<S extends boolean | null | undefined | TodoDefaultArgs> = $Result.GetResult<Prisma.$TodoPayload, S>
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
-  type TodoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TodoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TodoCountAggregateInputType | true
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserCountAggregateInputType | true
     }
 
-  export interface TodoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Todo'], meta: { name: 'Todo' } }
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
     /**
-     * Find zero or one Todo that matches the filter.
-     * @param {TodoFindUniqueArgs} args - Arguments to find a Todo
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
      * @example
-     * // Get one Todo
-     * const todo = await prisma.todo.findUnique({
+     * // Get one User
+     * const user = await prisma.user.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends TodoFindUniqueArgs>(args: SelectSubset<T, TodoFindUniqueArgs<ExtArgs>>): Prisma__TodoClient<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Todo that matches the filter or throw an error with `error.code='P2025'`
+     * Find one User that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {TodoFindUniqueOrThrowArgs} args - Arguments to find a Todo
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
      * @example
-     * // Get one Todo
-     * const todo = await prisma.todo.findUniqueOrThrow({
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TodoFindUniqueOrThrowArgs>(args: SelectSubset<T, TodoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TodoClient<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Todo that matches the filter.
+     * Find the first User that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TodoFindFirstArgs} args - Arguments to find a Todo
+     * @param {UserFindFirstArgs} args - Arguments to find a User
      * @example
-     * // Get one Todo
-     * const todo = await prisma.todo.findFirst({
+     * // Get one User
+     * const user = await prisma.user.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends TodoFindFirstArgs>(args?: SelectSubset<T, TodoFindFirstArgs<ExtArgs>>): Prisma__TodoClient<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Todo that matches the filter or
+     * Find the first User that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TodoFindFirstOrThrowArgs} args - Arguments to find a Todo
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
      * @example
-     * // Get one Todo
-     * const todo = await prisma.todo.findFirstOrThrow({
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends TodoFindFirstOrThrowArgs>(args?: SelectSubset<T, TodoFindFirstOrThrowArgs<ExtArgs>>): Prisma__TodoClient<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Todos that matches the filter.
+     * Find zero or more Users that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TodoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Todos
-     * const todos = await prisma.todo.findMany()
+     * // Get all Users
+     * const users = await prisma.user.findMany()
      * 
-     * // Get first 10 Todos
-     * const todos = await prisma.todo.findMany({ take: 10 })
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const todoWithIdOnly = await prisma.todo.findMany({ select: { id: true } })
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends TodoFindManyArgs>(args?: SelectSubset<T, TodoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Todo.
-     * @param {TodoCreateArgs} args - Arguments to create a Todo.
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
      * @example
-     * // Create one Todo
-     * const Todo = await prisma.todo.create({
+     * // Create one User
+     * const User = await prisma.user.create({
      *   data: {
-     *     // ... data to create a Todo
+     *     // ... data to create a User
      *   }
      * })
      * 
      */
-    create<T extends TodoCreateArgs>(args: SelectSubset<T, TodoCreateArgs<ExtArgs>>): Prisma__TodoClient<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Todos.
-     * @param {TodoCreateManyArgs} args - Arguments to create many Todos.
+     * Create many Users.
+     * @param {UserCreateManyArgs} args - Arguments to create many Users.
      * @example
-     * // Create many Todos
-     * const todo = await prisma.todo.createMany({
+     * // Create many Users
+     * const user = await prisma.user.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends TodoCreateManyArgs>(args?: SelectSubset<T, TodoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Todo.
-     * @param {TodoDeleteArgs} args - Arguments to delete one Todo.
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
      * @example
-     * // Delete one Todo
-     * const Todo = await prisma.todo.delete({
+     * // Delete one User
+     * const User = await prisma.user.delete({
      *   where: {
-     *     // ... filter to delete one Todo
+     *     // ... filter to delete one User
      *   }
      * })
      * 
      */
-    delete<T extends TodoDeleteArgs>(args: SelectSubset<T, TodoDeleteArgs<ExtArgs>>): Prisma__TodoClient<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Todo.
-     * @param {TodoUpdateArgs} args - Arguments to update one Todo.
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
      * @example
-     * // Update one Todo
-     * const todo = await prisma.todo.update({
+     * // Update one User
+     * const user = await prisma.user.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1113,30 +1252,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends TodoUpdateArgs>(args: SelectSubset<T, TodoUpdateArgs<ExtArgs>>): Prisma__TodoClient<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Todos.
-     * @param {TodoDeleteManyArgs} args - Arguments to filter Todos to delete.
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
      * @example
-     * // Delete a few Todos
-     * const { count } = await prisma.todo.deleteMany({
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends TodoDeleteManyArgs>(args?: SelectSubset<T, TodoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Todos.
+     * Update zero or more Users.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TodoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Todos
-     * const todo = await prisma.todo.updateMany({
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1146,79 +1285,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends TodoUpdateManyArgs>(args: SelectSubset<T, TodoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Todo.
-     * @param {TodoUpsertArgs} args - Arguments to update or create a Todo.
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
      * @example
-     * // Update or create a Todo
-     * const todo = await prisma.todo.upsert({
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
      *   create: {
-     *     // ... data to create a Todo
+     *     // ... data to create a User
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Todo we want to update
+     *     // ... the filter for the User we want to update
      *   }
      * })
      */
-    upsert<T extends TodoUpsertArgs>(args: SelectSubset<T, TodoUpsertArgs<ExtArgs>>): Prisma__TodoClient<$Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Todos that matches the filter.
-     * @param {TodoFindRawArgs} args - Select which filters you would like to apply.
+     * Find zero or more Users that matches the filter.
+     * @param {UserFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const todo = await prisma.todo.findRaw({
+     * const user = await prisma.user.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: TodoFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: UserFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a Todo.
-     * @param {TodoAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a User.
+     * @param {UserAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const todo = await prisma.todo.aggregateRaw({
+     * const user = await prisma.user.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: TodoAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: UserAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
-     * Count the number of Todos.
+     * Count the number of Users.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TodoCountArgs} args - Arguments to filter Todos to count.
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
      * @example
-     * // Count the number of Todos
-     * const count = await prisma.todo.count({
+     * // Count the number of Users
+     * const count = await prisma.user.count({
      *   where: {
-     *     // ... the filter for the Todos we want to count
+     *     // ... the filter for the Users we want to count
      *   }
      * })
     **/
-    count<T extends TodoCountArgs>(
-      args?: Subset<T, TodoCountArgs>,
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TodoCountAggregateOutputType>
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Todo.
+     * Allows you to perform aggregations operations on a User.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TodoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1238,13 +1377,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TodoAggregateArgs>(args: Subset<T, TodoAggregateArgs>): Prisma.PrismaPromise<GetTodoAggregateType<T>>
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
 
     /**
-     * Group by Todo.
+     * Group by User.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TodoGroupByArgs} args - Group by arguments.
+     * @param {UserGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1259,14 +1398,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends TodoGroupByArgs,
+      T extends UserGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TodoGroupByArgs['orderBy'] }
-        : { orderBy?: TodoGroupByArgs['orderBy'] },
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1315,21 +1454,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, TodoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTodoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Todo model
+   * Fields of the User model
    */
-  readonly fields: TodoFieldRefs;
+  readonly fields: UserFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Todo.
+   * The delegate class that acts as a "Promise-like" for User.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TodoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    recipes<T extends User$recipesArgs<ExtArgs> = {}>(args?: Subset<T, User$recipesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1356,320 +1496,357 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Todo model
+   * Fields of the User model
    */
-  interface TodoFieldRefs {
-    readonly id: FieldRef<"Todo", 'String'>
-    readonly text: FieldRef<"Todo", 'String'>
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Todo findUnique
+   * User findUnique
    */
-  export type TodoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * Filter, which Todo to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: TodoWhereUniqueInput
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
   }
 
   /**
-   * Todo findUniqueOrThrow
+   * User findUniqueOrThrow
    */
-  export type TodoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * Filter, which Todo to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: TodoWhereUniqueInput
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
   }
 
   /**
-   * Todo findFirst
+   * User findFirst
    */
-  export type TodoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * Filter, which Todo to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TodoWhereInput
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Todos to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: TodoOrderByWithRelationInput | TodoOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Todos.
+     * Sets the position for searching for Users.
      */
-    cursor?: TodoWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Todos from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Todos.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Todos.
+     * Filter by unique combinations of Users.
      */
-    distinct?: TodoScalarFieldEnum | TodoScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
-   * Todo findFirstOrThrow
+   * User findFirstOrThrow
    */
-  export type TodoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * Filter, which Todo to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TodoWhereInput
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Todos to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: TodoOrderByWithRelationInput | TodoOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Todos.
+     * Sets the position for searching for Users.
      */
-    cursor?: TodoWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Todos from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Todos.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Todos.
+     * Filter by unique combinations of Users.
      */
-    distinct?: TodoScalarFieldEnum | TodoScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
-   * Todo findMany
+   * User findMany
    */
-  export type TodoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * Filter, which Todos to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TodoWhereInput
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which Users to fetch.
+     */
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Todos to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: TodoOrderByWithRelationInput | TodoOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Todos.
+     * Sets the position for listing Users.
      */
-    cursor?: TodoWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Todos from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Todos.
+     * Skip the first `n` Users.
      */
     skip?: number
-    distinct?: TodoScalarFieldEnum | TodoScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
-   * Todo create
+   * User create
    */
-  export type TodoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * The data needed to create a Todo.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<TodoCreateInput, TodoUncheckedCreateInput>
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to create a User.
+     */
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
 
   /**
-   * Todo createMany
+   * User createMany
    */
-  export type TodoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Todos.
+     * The data used to create many Users.
      */
-    data: TodoCreateManyInput | TodoCreateManyInput[]
+    data: UserCreateManyInput | UserCreateManyInput[]
   }
 
   /**
-   * Todo update
+   * User update
    */
-  export type TodoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * The data needed to update a Todo.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<TodoUpdateInput, TodoUncheckedUpdateInput>
+    include?: UserInclude<ExtArgs> | null
     /**
-     * Choose, which Todo to update.
+     * The data needed to update a User.
      */
-    where: TodoWhereUniqueInput
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    /**
+     * Choose, which User to update.
+     */
+    where: UserWhereUniqueInput
   }
 
   /**
-   * Todo updateMany
+   * User updateMany
    */
-  export type TodoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Todos.
+     * The data used to update Users.
      */
-    data: XOR<TodoUpdateManyMutationInput, TodoUncheckedUpdateManyInput>
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
     /**
-     * Filter which Todos to update
+     * Filter which Users to update
      */
-    where?: TodoWhereInput
+    where?: UserWhereInput
     /**
-     * Limit how many Todos to update.
+     * Limit how many Users to update.
      */
     limit?: number
   }
 
   /**
-   * Todo upsert
+   * User upsert
    */
-  export type TodoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * The filter to search for the Todo to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: TodoWhereUniqueInput
+    include?: UserInclude<ExtArgs> | null
     /**
-     * In case the Todo found by the `where` argument doesn't exist, create a new Todo with this data.
+     * The filter to search for the User to update in case it exists.
      */
-    create: XOR<TodoCreateInput, TodoUncheckedCreateInput>
+    where: UserWhereUniqueInput
     /**
-     * In case the Todo was found with the provided `where` argument, update it with this data.
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
      */
-    update: XOR<TodoUpdateInput, TodoUncheckedUpdateInput>
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    /**
+     * In case the User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
   }
 
   /**
-   * Todo delete
+   * User delete
    */
-  export type TodoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the User
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the User
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * Filter which Todo to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: TodoWhereUniqueInput
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter which User to delete.
+     */
+    where: UserWhereUniqueInput
   }
 
   /**
-   * Todo deleteMany
+   * User deleteMany
    */
-  export type TodoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Todos to delete
+     * Filter which Users to delete
      */
-    where?: TodoWhereInput
+    where?: UserWhereInput
     /**
-     * Limit how many Todos to delete.
+     * Limit how many Users to delete.
      */
     limit?: number
   }
 
   /**
-   * Todo findRaw
+   * User findRaw
    */
-  export type TodoFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -1681,9 +1858,9 @@ export namespace Prisma {
   }
 
   /**
-   * Todo aggregateRaw
+   * User aggregateRaw
    */
-  export type TodoAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -1695,17 +1872,1016 @@ export namespace Prisma {
   }
 
   /**
-   * Todo without action
+   * User.recipes
    */
-  export type TodoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$recipesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Todo
+     * Select specific fields to fetch from the Recipe
      */
-    select?: TodoSelect<ExtArgs> | null
+    select?: RecipeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Todo
+     * Omit specific fields from the Recipe
      */
-    omit?: TodoOmit<ExtArgs> | null
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    where?: RecipeWhereInput
+    orderBy?: RecipeOrderByWithRelationInput | RecipeOrderByWithRelationInput[]
+    cursor?: RecipeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RecipeScalarFieldEnum | RecipeScalarFieldEnum[]
+  }
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Recipe
+   */
+
+  export type AggregateRecipe = {
+    _count: RecipeCountAggregateOutputType | null
+    _min: RecipeMinAggregateOutputType | null
+    _max: RecipeMaxAggregateOutputType | null
+  }
+
+  export type RecipeMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    authorId: string | null
+  }
+
+  export type RecipeMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    authorId: string | null
+  }
+
+  export type RecipeCountAggregateOutputType = {
+    id: number
+    title: number
+    ingredients: number
+    instructions: number
+    authorId: number
+    _all: number
+  }
+
+
+  export type RecipeMinAggregateInputType = {
+    id?: true
+    title?: true
+    authorId?: true
+  }
+
+  export type RecipeMaxAggregateInputType = {
+    id?: true
+    title?: true
+    authorId?: true
+  }
+
+  export type RecipeCountAggregateInputType = {
+    id?: true
+    title?: true
+    ingredients?: true
+    instructions?: true
+    authorId?: true
+    _all?: true
+  }
+
+  export type RecipeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Recipe to aggregate.
+     */
+    where?: RecipeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Recipes to fetch.
+     */
+    orderBy?: RecipeOrderByWithRelationInput | RecipeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RecipeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Recipes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Recipes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Recipes
+    **/
+    _count?: true | RecipeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RecipeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RecipeMaxAggregateInputType
+  }
+
+  export type GetRecipeAggregateType<T extends RecipeAggregateArgs> = {
+        [P in keyof T & keyof AggregateRecipe]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRecipe[P]>
+      : GetScalarType<T[P], AggregateRecipe[P]>
+  }
+
+
+
+
+  export type RecipeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecipeWhereInput
+    orderBy?: RecipeOrderByWithAggregationInput | RecipeOrderByWithAggregationInput[]
+    by: RecipeScalarFieldEnum[] | RecipeScalarFieldEnum
+    having?: RecipeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RecipeCountAggregateInputType | true
+    _min?: RecipeMinAggregateInputType
+    _max?: RecipeMaxAggregateInputType
+  }
+
+  export type RecipeGroupByOutputType = {
+    id: string
+    title: string
+    ingredients: string[]
+    instructions: string[]
+    authorId: string
+    _count: RecipeCountAggregateOutputType | null
+    _min: RecipeMinAggregateOutputType | null
+    _max: RecipeMaxAggregateOutputType | null
+  }
+
+  type GetRecipeGroupByPayload<T extends RecipeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RecipeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RecipeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RecipeGroupByOutputType[P]>
+            : GetScalarType<T[P], RecipeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RecipeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    ingredients?: boolean
+    instructions?: boolean
+    authorId?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["recipe"]>
+
+
+
+  export type RecipeSelectScalar = {
+    id?: boolean
+    title?: boolean
+    ingredients?: boolean
+    instructions?: boolean
+    authorId?: boolean
+  }
+
+  export type RecipeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "ingredients" | "instructions" | "authorId", ExtArgs["result"]["recipe"]>
+  export type RecipeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RecipePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Recipe"
+    objects: {
+      author: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      ingredients: string[]
+      instructions: string[]
+      authorId: string
+    }, ExtArgs["result"]["recipe"]>
+    composites: {}
+  }
+
+  type RecipeGetPayload<S extends boolean | null | undefined | RecipeDefaultArgs> = $Result.GetResult<Prisma.$RecipePayload, S>
+
+  type RecipeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RecipeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RecipeCountAggregateInputType | true
+    }
+
+  export interface RecipeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Recipe'], meta: { name: 'Recipe' } }
+    /**
+     * Find zero or one Recipe that matches the filter.
+     * @param {RecipeFindUniqueArgs} args - Arguments to find a Recipe
+     * @example
+     * // Get one Recipe
+     * const recipe = await prisma.recipe.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RecipeFindUniqueArgs>(args: SelectSubset<T, RecipeFindUniqueArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Recipe that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RecipeFindUniqueOrThrowArgs} args - Arguments to find a Recipe
+     * @example
+     * // Get one Recipe
+     * const recipe = await prisma.recipe.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RecipeFindUniqueOrThrowArgs>(args: SelectSubset<T, RecipeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Recipe that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecipeFindFirstArgs} args - Arguments to find a Recipe
+     * @example
+     * // Get one Recipe
+     * const recipe = await prisma.recipe.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RecipeFindFirstArgs>(args?: SelectSubset<T, RecipeFindFirstArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Recipe that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecipeFindFirstOrThrowArgs} args - Arguments to find a Recipe
+     * @example
+     * // Get one Recipe
+     * const recipe = await prisma.recipe.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RecipeFindFirstOrThrowArgs>(args?: SelectSubset<T, RecipeFindFirstOrThrowArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Recipes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecipeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Recipes
+     * const recipes = await prisma.recipe.findMany()
+     * 
+     * // Get first 10 Recipes
+     * const recipes = await prisma.recipe.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const recipeWithIdOnly = await prisma.recipe.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RecipeFindManyArgs>(args?: SelectSubset<T, RecipeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Recipe.
+     * @param {RecipeCreateArgs} args - Arguments to create a Recipe.
+     * @example
+     * // Create one Recipe
+     * const Recipe = await prisma.recipe.create({
+     *   data: {
+     *     // ... data to create a Recipe
+     *   }
+     * })
+     * 
+     */
+    create<T extends RecipeCreateArgs>(args: SelectSubset<T, RecipeCreateArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Recipes.
+     * @param {RecipeCreateManyArgs} args - Arguments to create many Recipes.
+     * @example
+     * // Create many Recipes
+     * const recipe = await prisma.recipe.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RecipeCreateManyArgs>(args?: SelectSubset<T, RecipeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Recipe.
+     * @param {RecipeDeleteArgs} args - Arguments to delete one Recipe.
+     * @example
+     * // Delete one Recipe
+     * const Recipe = await prisma.recipe.delete({
+     *   where: {
+     *     // ... filter to delete one Recipe
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RecipeDeleteArgs>(args: SelectSubset<T, RecipeDeleteArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Recipe.
+     * @param {RecipeUpdateArgs} args - Arguments to update one Recipe.
+     * @example
+     * // Update one Recipe
+     * const recipe = await prisma.recipe.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RecipeUpdateArgs>(args: SelectSubset<T, RecipeUpdateArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Recipes.
+     * @param {RecipeDeleteManyArgs} args - Arguments to filter Recipes to delete.
+     * @example
+     * // Delete a few Recipes
+     * const { count } = await prisma.recipe.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RecipeDeleteManyArgs>(args?: SelectSubset<T, RecipeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Recipes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecipeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Recipes
+     * const recipe = await prisma.recipe.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RecipeUpdateManyArgs>(args: SelectSubset<T, RecipeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Recipe.
+     * @param {RecipeUpsertArgs} args - Arguments to update or create a Recipe.
+     * @example
+     * // Update or create a Recipe
+     * const recipe = await prisma.recipe.upsert({
+     *   create: {
+     *     // ... data to create a Recipe
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Recipe we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RecipeUpsertArgs>(args: SelectSubset<T, RecipeUpsertArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Recipes that matches the filter.
+     * @param {RecipeFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const recipe = await prisma.recipe.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: RecipeFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Recipe.
+     * @param {RecipeAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const recipe = await prisma.recipe.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: RecipeAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Recipes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecipeCountArgs} args - Arguments to filter Recipes to count.
+     * @example
+     * // Count the number of Recipes
+     * const count = await prisma.recipe.count({
+     *   where: {
+     *     // ... the filter for the Recipes we want to count
+     *   }
+     * })
+    **/
+    count<T extends RecipeCountArgs>(
+      args?: Subset<T, RecipeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RecipeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Recipe.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecipeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RecipeAggregateArgs>(args: Subset<T, RecipeAggregateArgs>): Prisma.PrismaPromise<GetRecipeAggregateType<T>>
+
+    /**
+     * Group by Recipe.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecipeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RecipeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RecipeGroupByArgs['orderBy'] }
+        : { orderBy?: RecipeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RecipeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRecipeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Recipe model
+   */
+  readonly fields: RecipeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Recipe.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RecipeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Recipe model
+   */
+  interface RecipeFieldRefs {
+    readonly id: FieldRef<"Recipe", 'String'>
+    readonly title: FieldRef<"Recipe", 'String'>
+    readonly ingredients: FieldRef<"Recipe", 'String[]'>
+    readonly instructions: FieldRef<"Recipe", 'String[]'>
+    readonly authorId: FieldRef<"Recipe", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Recipe findUnique
+   */
+  export type RecipeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * Filter, which Recipe to fetch.
+     */
+    where: RecipeWhereUniqueInput
+  }
+
+  /**
+   * Recipe findUniqueOrThrow
+   */
+  export type RecipeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * Filter, which Recipe to fetch.
+     */
+    where: RecipeWhereUniqueInput
+  }
+
+  /**
+   * Recipe findFirst
+   */
+  export type RecipeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * Filter, which Recipe to fetch.
+     */
+    where?: RecipeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Recipes to fetch.
+     */
+    orderBy?: RecipeOrderByWithRelationInput | RecipeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Recipes.
+     */
+    cursor?: RecipeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Recipes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Recipes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Recipes.
+     */
+    distinct?: RecipeScalarFieldEnum | RecipeScalarFieldEnum[]
+  }
+
+  /**
+   * Recipe findFirstOrThrow
+   */
+  export type RecipeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * Filter, which Recipe to fetch.
+     */
+    where?: RecipeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Recipes to fetch.
+     */
+    orderBy?: RecipeOrderByWithRelationInput | RecipeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Recipes.
+     */
+    cursor?: RecipeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Recipes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Recipes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Recipes.
+     */
+    distinct?: RecipeScalarFieldEnum | RecipeScalarFieldEnum[]
+  }
+
+  /**
+   * Recipe findMany
+   */
+  export type RecipeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * Filter, which Recipes to fetch.
+     */
+    where?: RecipeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Recipes to fetch.
+     */
+    orderBy?: RecipeOrderByWithRelationInput | RecipeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Recipes.
+     */
+    cursor?: RecipeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Recipes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Recipes.
+     */
+    skip?: number
+    distinct?: RecipeScalarFieldEnum | RecipeScalarFieldEnum[]
+  }
+
+  /**
+   * Recipe create
+   */
+  export type RecipeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Recipe.
+     */
+    data: XOR<RecipeCreateInput, RecipeUncheckedCreateInput>
+  }
+
+  /**
+   * Recipe createMany
+   */
+  export type RecipeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Recipes.
+     */
+    data: RecipeCreateManyInput | RecipeCreateManyInput[]
+  }
+
+  /**
+   * Recipe update
+   */
+  export type RecipeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Recipe.
+     */
+    data: XOR<RecipeUpdateInput, RecipeUncheckedUpdateInput>
+    /**
+     * Choose, which Recipe to update.
+     */
+    where: RecipeWhereUniqueInput
+  }
+
+  /**
+   * Recipe updateMany
+   */
+  export type RecipeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Recipes.
+     */
+    data: XOR<RecipeUpdateManyMutationInput, RecipeUncheckedUpdateManyInput>
+    /**
+     * Filter which Recipes to update
+     */
+    where?: RecipeWhereInput
+    /**
+     * Limit how many Recipes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Recipe upsert
+   */
+  export type RecipeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Recipe to update in case it exists.
+     */
+    where: RecipeWhereUniqueInput
+    /**
+     * In case the Recipe found by the `where` argument doesn't exist, create a new Recipe with this data.
+     */
+    create: XOR<RecipeCreateInput, RecipeUncheckedCreateInput>
+    /**
+     * In case the Recipe was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RecipeUpdateInput, RecipeUncheckedUpdateInput>
+  }
+
+  /**
+   * Recipe delete
+   */
+  export type RecipeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
+    /**
+     * Filter which Recipe to delete.
+     */
+    where: RecipeWhereUniqueInput
+  }
+
+  /**
+   * Recipe deleteMany
+   */
+  export type RecipeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Recipes to delete
+     */
+    where?: RecipeWhereInput
+    /**
+     * Limit how many Recipes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Recipe findRaw
+   */
+  export type RecipeFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Recipe aggregateRaw
+   */
+  export type RecipeAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Recipe without action
+   */
+  export type RecipeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recipe
+     */
+    select?: RecipeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recipe
+     */
+    omit?: RecipeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecipeInclude<ExtArgs> | null
   }
 
 
@@ -1713,12 +2889,24 @@ export namespace Prisma {
    * Enums
    */
 
-  export const TodoScalarFieldEnum: {
+  export const UserScalarFieldEnum: {
     id: 'id',
-    text: 'text'
+    email: 'email',
+    name: 'name'
   };
 
-  export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const RecipeScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    ingredients: 'ingredients',
+    instructions: 'instructions',
+    authorId: 'authorId'
+  };
+
+  export type RecipeScalarFieldEnum = (typeof RecipeScalarFieldEnum)[keyof typeof RecipeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1773,72 +2961,197 @@ export namespace Prisma {
    */
 
 
-  export type TodoWhereInput = {
-    AND?: TodoWhereInput | TodoWhereInput[]
-    OR?: TodoWhereInput[]
-    NOT?: TodoWhereInput | TodoWhereInput[]
-    id?: StringFilter<"Todo"> | string
-    text?: StringFilter<"Todo"> | string
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    name?: StringFilter<"User"> | string
+    recipes?: RecipeListRelationFilter
   }
 
-  export type TodoOrderByWithRelationInput = {
+  export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    text?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    recipes?: RecipeOrderByRelationAggregateInput
   }
 
-  export type TodoWhereUniqueInput = Prisma.AtLeast<{
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: TodoWhereInput | TodoWhereInput[]
-    OR?: TodoWhereInput[]
-    NOT?: TodoWhereInput | TodoWhereInput[]
-    text?: StringFilter<"Todo"> | string
+    email?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    name?: StringFilter<"User"> | string
+    recipes?: RecipeListRelationFilter
+  }, "id" | "email">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"User"> | string
+    email?: StringWithAggregatesFilter<"User"> | string
+    name?: StringWithAggregatesFilter<"User"> | string
+  }
+
+  export type RecipeWhereInput = {
+    AND?: RecipeWhereInput | RecipeWhereInput[]
+    OR?: RecipeWhereInput[]
+    NOT?: RecipeWhereInput | RecipeWhereInput[]
+    id?: StringFilter<"Recipe"> | string
+    title?: StringFilter<"Recipe"> | string
+    ingredients?: StringNullableListFilter<"Recipe">
+    instructions?: StringNullableListFilter<"Recipe">
+    authorId?: StringFilter<"Recipe"> | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RecipeOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    ingredients?: SortOrder
+    instructions?: SortOrder
+    authorId?: SortOrder
+    author?: UserOrderByWithRelationInput
+  }
+
+  export type RecipeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RecipeWhereInput | RecipeWhereInput[]
+    OR?: RecipeWhereInput[]
+    NOT?: RecipeWhereInput | RecipeWhereInput[]
+    title?: StringFilter<"Recipe"> | string
+    ingredients?: StringNullableListFilter<"Recipe">
+    instructions?: StringNullableListFilter<"Recipe">
+    authorId?: StringFilter<"Recipe"> | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
-  export type TodoOrderByWithAggregationInput = {
+  export type RecipeOrderByWithAggregationInput = {
     id?: SortOrder
-    text?: SortOrder
-    _count?: TodoCountOrderByAggregateInput
-    _max?: TodoMaxOrderByAggregateInput
-    _min?: TodoMinOrderByAggregateInput
+    title?: SortOrder
+    ingredients?: SortOrder
+    instructions?: SortOrder
+    authorId?: SortOrder
+    _count?: RecipeCountOrderByAggregateInput
+    _max?: RecipeMaxOrderByAggregateInput
+    _min?: RecipeMinOrderByAggregateInput
   }
 
-  export type TodoScalarWhereWithAggregatesInput = {
-    AND?: TodoScalarWhereWithAggregatesInput | TodoScalarWhereWithAggregatesInput[]
-    OR?: TodoScalarWhereWithAggregatesInput[]
-    NOT?: TodoScalarWhereWithAggregatesInput | TodoScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Todo"> | string
-    text?: StringWithAggregatesFilter<"Todo"> | string
+  export type RecipeScalarWhereWithAggregatesInput = {
+    AND?: RecipeScalarWhereWithAggregatesInput | RecipeScalarWhereWithAggregatesInput[]
+    OR?: RecipeScalarWhereWithAggregatesInput[]
+    NOT?: RecipeScalarWhereWithAggregatesInput | RecipeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Recipe"> | string
+    title?: StringWithAggregatesFilter<"Recipe"> | string
+    ingredients?: StringNullableListFilter<"Recipe">
+    instructions?: StringNullableListFilter<"Recipe">
+    authorId?: StringWithAggregatesFilter<"Recipe"> | string
   }
 
-  export type TodoCreateInput = {
+  export type UserCreateInput = {
     id?: string
-    text: string
+    email: string
+    name: string
+    recipes?: RecipeCreateNestedManyWithoutAuthorInput
   }
 
-  export type TodoUncheckedCreateInput = {
+  export type UserUncheckedCreateInput = {
     id?: string
-    text: string
+    email: string
+    name: string
+    recipes?: RecipeUncheckedCreateNestedManyWithoutAuthorInput
   }
 
-  export type TodoUpdateInput = {
-    text?: StringFieldUpdateOperationsInput | string
+  export type UserUpdateInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    recipes?: RecipeUpdateManyWithoutAuthorNestedInput
   }
 
-  export type TodoUncheckedUpdateInput = {
-    text?: StringFieldUpdateOperationsInput | string
+  export type UserUncheckedUpdateInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    recipes?: RecipeUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
-  export type TodoCreateManyInput = {
+  export type UserCreateManyInput = {
     id?: string
-    text: string
+    email: string
+    name: string
   }
 
-  export type TodoUpdateManyMutationInput = {
-    text?: StringFieldUpdateOperationsInput | string
+  export type UserUpdateManyMutationInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
-  export type TodoUncheckedUpdateManyInput = {
-    text?: StringFieldUpdateOperationsInput | string
+  export type UserUncheckedUpdateManyInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type RecipeCreateInput = {
+    id?: string
+    title: string
+    ingredients?: RecipeCreateingredientsInput | string[]
+    instructions?: RecipeCreateinstructionsInput | string[]
+    author: UserCreateNestedOneWithoutRecipesInput
+  }
+
+  export type RecipeUncheckedCreateInput = {
+    id?: string
+    title: string
+    ingredients?: RecipeCreateingredientsInput | string[]
+    instructions?: RecipeCreateinstructionsInput | string[]
+    authorId: string
+  }
+
+  export type RecipeUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeUpdateingredientsInput | string[]
+    instructions?: RecipeUpdateinstructionsInput | string[]
+    author?: UserUpdateOneRequiredWithoutRecipesNestedInput
+  }
+
+  export type RecipeUncheckedUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeUpdateingredientsInput | string[]
+    instructions?: RecipeUpdateinstructionsInput | string[]
+    authorId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type RecipeCreateManyInput = {
+    id?: string
+    title: string
+    ingredients?: RecipeCreateingredientsInput | string[]
+    instructions?: RecipeCreateinstructionsInput | string[]
+    authorId: string
+  }
+
+  export type RecipeUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeUpdateingredientsInput | string[]
+    instructions?: RecipeUpdateinstructionsInput | string[]
+  }
+
+  export type RecipeUncheckedUpdateManyInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeUpdateingredientsInput | string[]
+    instructions?: RecipeUpdateinstructionsInput | string[]
+    authorId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -1856,19 +3169,32 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type TodoCountOrderByAggregateInput = {
-    id?: SortOrder
-    text?: SortOrder
+  export type RecipeListRelationFilter = {
+    every?: RecipeWhereInput
+    some?: RecipeWhereInput
+    none?: RecipeWhereInput
   }
 
-  export type TodoMaxOrderByAggregateInput = {
-    id?: SortOrder
-    text?: SortOrder
+  export type RecipeOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
-  export type TodoMinOrderByAggregateInput = {
+  export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    text?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+  }
+
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+  }
+
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -1889,8 +3215,115 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type RecipeCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    ingredients?: SortOrder
+    instructions?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type RecipeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type RecipeMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type RecipeCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput> | RecipeCreateWithoutAuthorInput[] | RecipeUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: RecipeCreateOrConnectWithoutAuthorInput | RecipeCreateOrConnectWithoutAuthorInput[]
+    createMany?: RecipeCreateManyAuthorInputEnvelope
+    connect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+  }
+
+  export type RecipeUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput> | RecipeCreateWithoutAuthorInput[] | RecipeUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: RecipeCreateOrConnectWithoutAuthorInput | RecipeCreateOrConnectWithoutAuthorInput[]
+    createMany?: RecipeCreateManyAuthorInputEnvelope
+    connect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type RecipeUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput> | RecipeCreateWithoutAuthorInput[] | RecipeUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: RecipeCreateOrConnectWithoutAuthorInput | RecipeCreateOrConnectWithoutAuthorInput[]
+    upsert?: RecipeUpsertWithWhereUniqueWithoutAuthorInput | RecipeUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: RecipeCreateManyAuthorInputEnvelope
+    set?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    disconnect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    delete?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    connect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    update?: RecipeUpdateWithWhereUniqueWithoutAuthorInput | RecipeUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: RecipeUpdateManyWithWhereWithoutAuthorInput | RecipeUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
+  }
+
+  export type RecipeUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput> | RecipeCreateWithoutAuthorInput[] | RecipeUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: RecipeCreateOrConnectWithoutAuthorInput | RecipeCreateOrConnectWithoutAuthorInput[]
+    upsert?: RecipeUpsertWithWhereUniqueWithoutAuthorInput | RecipeUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: RecipeCreateManyAuthorInputEnvelope
+    set?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    disconnect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    delete?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    connect?: RecipeWhereUniqueInput | RecipeWhereUniqueInput[]
+    update?: RecipeUpdateWithWhereUniqueWithoutAuthorInput | RecipeUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: RecipeUpdateManyWithWhereWithoutAuthorInput | RecipeUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
+  }
+
+  export type RecipeCreateingredientsInput = {
+    set: string[]
+  }
+
+  export type RecipeCreateinstructionsInput = {
+    set: string[]
+  }
+
+  export type UserCreateNestedOneWithoutRecipesInput = {
+    create?: XOR<UserCreateWithoutRecipesInput, UserUncheckedCreateWithoutRecipesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRecipesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type RecipeUpdateingredientsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type RecipeUpdateinstructionsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type UserUpdateOneRequiredWithoutRecipesNestedInput = {
+    create?: XOR<UserCreateWithoutRecipesInput, UserUncheckedCreateWithoutRecipesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRecipesInput
+    upsert?: UserUpsertWithoutRecipesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRecipesInput, UserUpdateWithoutRecipesInput>, UserUncheckedUpdateWithoutRecipesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -1933,6 +3366,119 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type RecipeCreateWithoutAuthorInput = {
+    id?: string
+    title: string
+    ingredients?: RecipeCreateingredientsInput | string[]
+    instructions?: RecipeCreateinstructionsInput | string[]
+  }
+
+  export type RecipeUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    title: string
+    ingredients?: RecipeCreateingredientsInput | string[]
+    instructions?: RecipeCreateinstructionsInput | string[]
+  }
+
+  export type RecipeCreateOrConnectWithoutAuthorInput = {
+    where: RecipeWhereUniqueInput
+    create: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type RecipeCreateManyAuthorInputEnvelope = {
+    data: RecipeCreateManyAuthorInput | RecipeCreateManyAuthorInput[]
+  }
+
+  export type RecipeUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: RecipeWhereUniqueInput
+    update: XOR<RecipeUpdateWithoutAuthorInput, RecipeUncheckedUpdateWithoutAuthorInput>
+    create: XOR<RecipeCreateWithoutAuthorInput, RecipeUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type RecipeUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: RecipeWhereUniqueInput
+    data: XOR<RecipeUpdateWithoutAuthorInput, RecipeUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type RecipeUpdateManyWithWhereWithoutAuthorInput = {
+    where: RecipeScalarWhereInput
+    data: XOR<RecipeUpdateManyMutationInput, RecipeUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type RecipeScalarWhereInput = {
+    AND?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
+    OR?: RecipeScalarWhereInput[]
+    NOT?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
+    id?: StringFilter<"Recipe"> | string
+    title?: StringFilter<"Recipe"> | string
+    ingredients?: StringNullableListFilter<"Recipe">
+    instructions?: StringNullableListFilter<"Recipe">
+    authorId?: StringFilter<"Recipe"> | string
+  }
+
+  export type UserCreateWithoutRecipesInput = {
+    id?: string
+    email: string
+    name: string
+  }
+
+  export type UserUncheckedCreateWithoutRecipesInput = {
+    id?: string
+    email: string
+    name: string
+  }
+
+  export type UserCreateOrConnectWithoutRecipesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRecipesInput, UserUncheckedCreateWithoutRecipesInput>
+  }
+
+  export type UserUpsertWithoutRecipesInput = {
+    update: XOR<UserUpdateWithoutRecipesInput, UserUncheckedUpdateWithoutRecipesInput>
+    create: XOR<UserCreateWithoutRecipesInput, UserUncheckedCreateWithoutRecipesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRecipesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRecipesInput, UserUncheckedUpdateWithoutRecipesInput>
+  }
+
+  export type UserUpdateWithoutRecipesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUncheckedUpdateWithoutRecipesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type RecipeCreateManyAuthorInput = {
+    id?: string
+    title: string
+    ingredients?: RecipeCreateingredientsInput | string[]
+    instructions?: RecipeCreateinstructionsInput | string[]
+  }
+
+  export type RecipeUpdateWithoutAuthorInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeUpdateingredientsInput | string[]
+    instructions?: RecipeUpdateinstructionsInput | string[]
+  }
+
+  export type RecipeUncheckedUpdateWithoutAuthorInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeUpdateingredientsInput | string[]
+    instructions?: RecipeUpdateinstructionsInput | string[]
+  }
+
+  export type RecipeUncheckedUpdateManyWithoutAuthorInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeUpdateingredientsInput | string[]
+    instructions?: RecipeUpdateinstructionsInput | string[]
   }
 
 
