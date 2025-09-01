@@ -34,9 +34,15 @@ export default function Home() {
     try {
       const res = await fetch("/api/recipes");
       const data = await res.json();
-      setRecipes(data);
+      if (res.ok && Array.isArray(data)) {
+        setRecipes(data);
+      } else {
+        console.error('API error:', data);
+        setRecipes([]); // Keep as empty array on error
+      }
     } catch (err) {
       console.error('Error fetching recipes:', err);
+      setRecipes([]); // Keep as empty array on error
     } finally {
       setLoading(false);
     }
@@ -74,7 +80,7 @@ export default function Home() {
         <p>Inga recept ännu. <Link href="/create" style={{ color: 'blue' }}>Skapa det första receptet!</Link></p>
       ) : (
         <div style={{ display: 'grid', gap: '20px' }}>
-          {recipes.map((recipe) => (
+          {(recipes || []).map((recipe) => (
             <div key={recipe.id} style={{ 
               border: '1px solid #ddd', 
               padding: '15px', 
