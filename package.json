@@ -7,8 +7,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "test": "cypress run",
-    "test:open": "cypress open",
+    "test": "cypress open",
     "generate": "prisma generate",
     "push": "prisma db push",
     "studio": "prisma studio",
@@ -16,11 +15,12 @@
   },
   "dependencies": {
     "@prisma/client": "^6.14.0",
-    "@types/wait-on": "^5.3.4",
     "dotenv": "^17.2.1",
+    "mongodb-memory-server": "^10.2.0",
     "next": "15.5.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "wait-on": "^8.0.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -28,14 +28,13 @@
     "@types/node": "^20.19.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/wait-on": "^5.3.4",
     "cypress": "^15.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
-    "mongodb-memory-server": "^10.2.0",
     "prisma": "^6.14.0",
     "tailwindcss": "^4",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2",
-    "wait-on": "^8.0.4"
+    "typescript": "^5.9.2"
   }
 }

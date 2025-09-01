@@ -40,8 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/generated/prisma
-
 *.md
 !README.md
 
@@ -50,3 +48,4 @@ next-env.d.ts
 *zone.identifier
 Zone.Identifier
 zone.identifier
+
