@@ -30,13 +30,16 @@ export default function Login() {
 
       if (res.ok) {
         // Store user in localStorage (simple session management)
-        localStorage.setItem('user', JSON.stringify(data.user));
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('user', JSON.stringify(data.user));
+        }
         router.push('/');
       } else {
         setError(data.error || 'Something went wrong');
       }
     } catch (err) {
       setError('Network error. Please try again.');
+      console.error('Login error:', err);
     } finally {
       setLoading(false);
     }
@@ -88,14 +91,14 @@ export default function Login() {
           disabled={loading}
           style={{
             padding: '10px',
-            backgroundColor: '#007bff',
+            backgroundColor: loading ? '#ccc' : '#007bff',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
             cursor: loading ? 'not-allowed' : 'pointer'
           }}
         >
-          {loading ? 'Läser...' : (isRegister ? 'Registrera' : 'Logga in')}
+          {loading ? 'Laddar...' : (isRegister ? 'Registrera' : 'Logga in')}
         </button>
       </form>
 
