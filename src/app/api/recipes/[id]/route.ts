@@ -41,6 +41,7 @@ export async function GET(
       }
     };
 
+    const { id } = await params;
     const recipe = mockRecipes[id as keyof typeof mockRecipes];
     if (recipe) {
       return NextResponse.json(recipe);
