@@ -18,13 +18,20 @@ describe('Error Handling', () => {
   it('should show validation errors for empty recipe form', () => {
     // First register and login a user
     cy.visit('/login');
-    cy.get('#email').type('test@example.com');
+    cy.get('#email').type('validation1@example.com');
     cy.contains('Nytt här? Registrera dig').click();
-    cy.get('#name').type('Test User');
+    cy.get('#name').type('Validation Test User');
     cy.get('button[type="submit"]').click();
+    
+    // Wait to be redirected to homepage after successful registration
+    cy.url().should('eq', Cypress.config('baseUrl') + '/');
     
     // Navigate to create recipe
     cy.contains('Skapa Recept').click();
+    
+    // Wait for form to load
+    cy.get('#title').should('be.visible');
+    cy.get('button[type="submit"]').should('contain.text', 'Skapa Recept');
     
     // Try to submit empty form
     cy.get('button[type="submit"]').click();
@@ -39,10 +46,13 @@ describe('Error Handling', () => {
   it('should show validation error when submitting form with missing ingredients', () => {
     // Register and login user
     cy.visit('/login');
-    cy.get('#email').type('test@example.com');
+    cy.get('#email').type('validation2@example.com');
     cy.contains('Nytt här? Registrera dig').click();
-    cy.get('#name').type('Test User');
+    cy.get('#name').type('Validation Test User 2');
     cy.get('button[type="submit"]').click();
+    
+    // Wait to be redirected to homepage after successful registration
+    cy.url().should('eq', Cypress.config('baseUrl') + '/');
     
     // Navigate to create recipe
     cy.contains('Skapa Recept').click();

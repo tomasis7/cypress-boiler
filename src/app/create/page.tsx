@@ -122,7 +122,6 @@ export default function CreateRecipe() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="t.ex. Mormors Pannkakor"
-            required
             style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
           />
         </div>
