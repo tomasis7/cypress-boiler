@@ -65,28 +65,44 @@ export default function Home() {
           paddingBottom: "20px",
         }}
       >
-        <h1>RecipeShare</h1>
+        <h1>Matrecept</h1>
         <nav style={{ marginTop: "10px" }}>
           {currentUser ? (
             <div>
-              <span>Välkommen, {currentUser.name}! </span>
+              <span style={{ fontSize: "1.6rem" }}>
+                Välkommen, {currentUser.name}!{" "}
+              </span>
               <Link
                 href="/create"
-                style={{ marginRight: "10px", color: "blue" }}
+                style={{
+                  marginRight: "10px",
+                  color: "white",
+                  backgroundColor: "#959595ff",
+                  padding: "8px 16px",
+                  border: "1px solid #007bff",
+                  borderRadius: "4px",
+                  textDecoration: "none",
+                  display: "inline-block",
+                }}
               >
                 Skapa Recept
               </Link>
-              <button
+              <Link
+                href="#"
                 onClick={handleLogout}
                 style={{
-                  background: "none",
-                  border: "none",
-                  color: "blue",
-                  cursor: "pointer",
+                  marginRight: "10px",
+                  color: "white",
+                  backgroundColor: "#959595ff",
+                  padding: "8px 16px",
+                  border: "1px solid #007bff",
+                  borderRadius: "4px",
+                  textDecoration: "none",
+                  display: "inline-block",
                 }}
               >
                 Logga ut
-              </button>
+              </Link>
             </div>
           ) : (
             <>
@@ -96,7 +112,18 @@ export default function Home() {
               >
                 Logga in / Registrera
               </Link>
-              <Link href="/create" style={{ color: "blue" }}>
+              <Link
+                href="/create"
+                style={{
+                  color: "white",
+                  backgroundColor: "#007bff",
+                  padding: "8px 16px",
+                  border: "1px solid #007bff",
+                  borderRadius: "4px",
+                  textDecoration: "none",
+                  display: "inline-block",
+                }}
+              >
                 Skapa Recept
               </Link>
             </>

@@ -9,16 +9,20 @@ export default function CreateRecipe() {
   const [instructions, setInstructions] = useState<string[]>([""]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [currentUser, setCurrentUser] = useState<{id: string, name: string, email: string} | null>(null);
+  const [currentUser, setCurrentUser] = useState<{
+    id: string;
+    name: string;
+    email: string;
+  } | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     // Check if user is logged in
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem("user");
     if (user) {
       setCurrentUser(JSON.parse(user));
     } else {
-      router.push('/login');
+      router.push("/login");
     }
   }, [router]);
 
@@ -52,16 +56,22 @@ export default function CreateRecipe() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!currentUser) {
       setError("Du måste vara inloggad för att skapa recept");
       return;
     }
 
-    const filteredIngredients = ingredients.filter(ing => ing.trim() !== "");
-    const filteredInstructions = instructions.filter(inst => inst.trim() !== "");
+    const filteredIngredients = ingredients.filter((ing) => ing.trim() !== "");
+    const filteredInstructions = instructions.filter(
+      (inst) => inst.trim() !== ""
+    );
 
-    if (!title.trim() || filteredIngredients.length === 0 || filteredInstructions.length === 0) {
+    if (
+      !title.trim() ||
+      filteredIngredients.length === 0 ||
+      filteredInstructions.length === 0
+    ) {
       setError("Alla fält måste fyllas i");
       return;
     }
@@ -77,19 +87,19 @@ export default function CreateRecipe() {
           title: title.trim(),
           ingredients: filteredIngredients,
           instructions: filteredInstructions,
-          authorId: currentUser.id
-        })
+          authorId: currentUser.id,
+        }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        router.push('/');
+        router.push("/");
       } else {
-        setError(data.error || 'Something went wrong');
+        setError(data.error || "Something went wrong");
       }
     } catch (err) {
-      setError('Network error. Please try again.');
+      setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -100,20 +110,40 @@ export default function CreateRecipe() {
   }
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
+    <div
+      style={{
+        padding: "20px",
+        fontFamily: "Arial, sans-serif",
+        maxWidth: "600px",
+        margin: "0 auto",
+      }}
+    >
       <h1>
-        <Link href="/" style={{ color: 'black', textDecoration: 'none' }}>RecipeShare</Link>
+        <Link href="/" style={{ color: "black", textDecoration: "none" }}>
+          Matrecept
+        </Link>
       </h1>
-      
+
       <h2>Skapa Nytt Recept</h2>
 
       {error && (
-        <div style={{ color: 'red', marginBottom: '15px', padding: '10px', border: '1px solid red', borderRadius: '4px' }}>
+        <div
+          style={{
+            color: "red",
+            marginBottom: "15px",
+            padding: "10px",
+            border: "1px solid red",
+            borderRadius: "4px",
+          }}
+        >
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+      >
         <div>
           <label htmlFor="title">Recepttitel:</label>
           <input
@@ -122,26 +152,46 @@ export default function CreateRecipe() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="t.ex. Mormors Pannkakor"
-            style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
+            style={{
+              width: "100%",
+              padding: "8px",
+              marginTop: "5px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+            }}
           />
         </div>
 
         <div>
           <label>Ingredienser:</label>
           {ingredients.map((ingredient, index) => (
-            <div key={index} style={{ display: 'flex', gap: '10px', marginTop: '5px' }}>
+            <div
+              key={index}
+              style={{ display: "flex", gap: "10px", marginTop: "5px" }}
+            >
               <input
                 type="text"
                 value={ingredient}
                 onChange={(e) => updateIngredient(index, e.target.value)}
                 placeholder={`Ingrediens ${index + 1}`}
-                style={{ flex: 1, padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
+                style={{
+                  flex: 1,
+                  padding: "8px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
               />
               {ingredients.length > 1 && (
                 <button
                   type="button"
                   onClick={() => removeIngredient(index)}
-                  style={{ padding: '8px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px' }}
+                  style={{
+                    padding: "8px",
+                    backgroundColor: "#dc3545",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "4px",
+                  }}
                 >
                   Ta bort
                 </button>
@@ -151,7 +201,14 @@ export default function CreateRecipe() {
           <button
             type="button"
             onClick={addIngredient}
-            style={{ marginTop: '10px', padding: '8px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px' }}
+            style={{
+              marginTop: "10px",
+              padding: "8px",
+              backgroundColor: "#808080ff",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+            }}
           >
             + Lägg till ingrediens
           </button>
@@ -160,19 +217,33 @@ export default function CreateRecipe() {
         <div>
           <label>Instruktioner:</label>
           {instructions.map((instruction, index) => (
-            <div key={index} style={{ display: 'flex', gap: '10px', marginTop: '5px' }}>
+            <div
+              key={index}
+              style={{ display: "flex", gap: "10px", marginTop: "5px" }}
+            >
               <textarea
                 value={instruction}
                 onChange={(e) => updateInstruction(index, e.target.value)}
                 placeholder={`Steg ${index + 1}`}
                 rows={2}
-                style={{ flex: 1, padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
+                style={{
+                  flex: 1,
+                  padding: "8px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                }}
               />
               {instructions.length > 1 && (
                 <button
                   type="button"
                   onClick={() => removeInstruction(index)}
-                  style={{ padding: '8px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px' }}
+                  style={{
+                    padding: "8px",
+                    backgroundColor: "#dc3545",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "4px",
+                  }}
                 >
                   Ta bort
                 </button>
@@ -182,7 +253,14 @@ export default function CreateRecipe() {
           <button
             type="button"
             onClick={addInstruction}
-            style={{ marginTop: '10px', padding: '8px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px' }}
+            style={{
+              marginTop: "10px",
+              padding: "8px",
+              backgroundColor: "#808080ff",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+            }}
           >
             + Lägg till steg
           </button>
@@ -192,16 +270,16 @@ export default function CreateRecipe() {
           type="submit"
           disabled={loading}
           style={{
-            padding: '12px',
-            backgroundColor: '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: loading ? 'not-allowed' : 'pointer',
-            fontSize: '16px'
+            padding: "12px",
+            backgroundColor: "#808080ff",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: loading ? "not-allowed" : "pointer",
+            fontSize: "16px",
           }}
         >
-          {loading ? 'Skapar recept...' : 'Skapa Recept'}
+          {loading ? "Skapar recept..." : "Skapa Recept"}
         </button>
       </form>
     </div>
