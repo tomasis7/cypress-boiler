@@ -25,7 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchRecipes();
-    // Check if user is logged in (simple localStorage check)
+
     const user = localStorage.getItem("user");
     if (user) {
       setCurrentUser(JSON.parse(user));
@@ -41,11 +41,11 @@ export default function Home() {
         setRecipes(data);
       } else {
         console.error("API error:", data);
-        setRecipes([]); // Keep as empty array on error
+        setRecipes([]);
       }
     } catch (err) {
       console.error("Error fetching recipes:", err);
-      setRecipes([]); // Keep as empty array on error
+      setRecipes([]);
     } finally {
       setLoading(false);
     }
@@ -116,7 +116,7 @@ export default function Home() {
                 href="/create"
                 style={{
                   color: "white",
-                  backgroundColor: "#007bff",
+                  backgroundColor: "#8b8b8bff",
                   padding: "8px 16px",
                   border: "1px solid #007bff",
                   borderRadius: "4px",

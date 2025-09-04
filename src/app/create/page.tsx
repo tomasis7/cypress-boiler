@@ -17,7 +17,6 @@ export default function CreateRecipe() {
   const router = useRouter();
 
   useEffect(() => {
-    // Check if user is logged in
     const user = localStorage.getItem("user");
     if (user) {
       setCurrentUser(JSON.parse(user));
